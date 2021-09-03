@@ -7,22 +7,18 @@
  
 
  Node.js é uma plataforma que permite a você construir aplicações server-side em JavaScript, já falei disso extensivamente neste artigo.
-
- MongoDB é um banco de dados NoSQL, orientado a documentos JSON(-like), o mesmo formato de dados usado no JavaScript,além de ser utilizado através de funções com sintaxe muito similar
- ao JS também,diferente dos bancos SQL tradicionais e também já falei disso extensivamente neste artigo.Vê algo em comum entre os dois? Pois é, ambos tem o JavaScript em comum e isso 
- facilita bastante o uso destas duas tecnologias em conjunto, motivo de ser uma dupla bem frequente para projetos de todos os tamanhos.A ideia deste tutorial é justamente lhe dar um primeiro
- contato prático com ambos, fazendo o famoso CRUD (Create, Retrieve, Update e Delete).
+ MongoDB é um banco de dados NoSQL, orientado a documentos JSON(-like), o mesmo formato de dados usado no JavaScript,além de ser utilizado através de funções com sintaxe muito similar ao JS também,diferente dos bancos SQL tradicionais e também já falei disso extensivamente neste artigo.Vê algo em comum entre os dois? Pois é, ambos tem o JavaScript em comum e isso facilita bastante o uso destas duas tecnologias em conjunto, motivo de ser uma dupla bem frequente para projetos de todos os tamanhos.A ideia deste tutorial é justamente lhe dar um primeiro contato prático com ambos, fazendo o famoso CRUD (Create, Retrieve, Update e Delete).
 
  Neste artigo você vai ver:
 
- 1 - Configurando o Node.js
- 2 - Configurando o MongoDB
- 3 - Conectando no MongoDB com Node
- 4 - Cadastrando no banco
- 5 - Atualizando clientes
- 6 - Excluindo clientes
-
- #1 – Configurando o Node.js
+ * 1 - Configurando o Node.js.
+ * 2 - Configurando o MongoDB.
+ * 3 - Conectando no MongoDB com Node.
+ * 4 - Cadastrando no banco.
+ * 5 - Atualizando clientes.
+ * 6 - Excluindo clientes.
+ 
+ # 1 – Configurando o Node.js
  
  Vamos começar instalando o Node.js: apenas clique no link do site oficial e depois no grande  botão verde para baixar o executável certo para o seu sistema operacional (recomendo a versão LTS).
  Esse executável irá instalar o Node.js e o NPM, que é o gerenciador de pacotes do Node. Uma vez com o NPM instalado, vamos instalar o módulo que será útil mais pra frente. Crie uma pasta para 
@@ -69,7 +65,7 @@ Depois entre na pasta e mande instalar as dependências com npm install:
         *************************************************
 
  
- #2 – Configurando o MongoDB
+ # 2 – Configurando o MongoDB
 
    OK, agora que temos a estrutura básica vamos fazer mais alguns ajustes em um arquivo que fica na raiz do seu projeto chamado package.json. Ele é o arquivo de configuração do seu projeto e determina, por exemplo, quais as bibliotecas que você possui dependência no seu projeto. Vamos agora acessar o site oficial do MongoDB e baixar o Mongo. Clique no menu superior em Software > Community Server e busque a versão do Community Server mais recente para o seu sistema operacional. Baixe o arquivo e, no caso do Windows, rode o executável que extrairá os arquivos na sua pasta de Arquivos de Programas, seguido de uma pasta server/version, o que é está ok para a maioria dos casos. Dentro da pasta do seu projeto Node, que aqui chamei de workshoptdc, deve existir uma subpasta de nome data, crie ela agora. Nesta pasta vamos armazenar nossos dados do MongoDB. Pelo prompt de comando, entre na subpasta bin dentro da pasta de instalação do seu MongoDB e digite (no caso de Mac e Linux, coloque um ./ antes do mongod e ajuste o caminho da pasta data de acordo):
 
