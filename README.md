@@ -3,8 +3,8 @@
  TEXTTO RETIRADO DO SIT https://www.luiztools.com.br/post/tutorial-crud-em-node-js-com-driver-nativo-do-mongodb/
 
 ***************************************************************************************************************************************************
-    O ARTIGO A BAIXO FOI MONTADO COM BASE NO SIT https://www.luiztools.com.br/post/tutorial-crud-em-node-js-com-driver-nativo-do-mongodb/ QUE FOI
- ESCRITO POR Escrito por Luiz Duarte, O TESXTO ASEGUIR TEM O  ITUITO DE TREINAR E ENTENDER SOBRE AS FERRAMENTAS ABORNDADOS NO MESMO, COM ISSO QUALQUER QUESTÃO REFERENTE A DIRgEITOS AUTORAIS ESTÃO SENDO REFERENCIADAS, SE CASO GOSTAREM DO QUE ESTA SENDO TRASCRITO AQUI, ENTREM NO SIT ORIGINAL PARA ENTENDER MELHOR. Texto Criado e Trascrito Meramente Para questão Didatica sem fins Lucrativos.                                                                                                                                    
+    O ARTIGO A BAIXO FOI MONTADO COM BASE NO SIT https://www.luiztools.com.br/post/tutorial-crud-em-node-js-com-driver-nativo-do-mongodb/
+    Escrito por Luiz Duarte, O TESXTO ASEGUIR TEM O  ITUITO DE TREINAR E ENTENDER SOBRE AS FERRAMENTAS ABORNDADOS NO MESMO, COM ISSO QUALQUER QUESTÃO REFERENTE A DIRgEITOS AUTORAIS ESTÃO SENDO REFERENCIADAS, SE CASO GOSTAREM DO QUE ESTA SENDO TRASCRITO AQUI, ENTREM NO SIT ORIGINAL PARA ENTENDER MELHOR. Texto Criado e Trascrito Meramente Para questão Didatica sem fins Lucrativos.                                                                                                                                    
 ***************************************************************************************************************************************************
  
 

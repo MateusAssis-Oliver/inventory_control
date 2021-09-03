@@ -9,4 +9,14 @@ function findAll() {
     return global.conn.collection("customers").find().toArray();
 }
  
-module.exports = { findAll }
+
+function insert(customer) {
+    return global.conn.collection("customers").insertOne(customer);
+}
+
+const ObjectId = require("mongodb").ObjectId;
+function findOne(id) {
+  return global.conn.collection("customers").findOne(new ObjectId(id));
+}
+
+module.exports = { findAll, insert, findOne };
