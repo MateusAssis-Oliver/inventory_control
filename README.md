@@ -3,8 +3,7 @@
  TEXTTO RETIRADO DO SIT https://www.luiztools.com.br/post/tutorial-crud-em-node-js-com-driver-nativo-do-mongodb/
 
 ***************************************************************************************************************************************************
-    O ARTIGO A BAIXO FOI MONTADO COM BASE NO SIT https://www.luiztools.com.br/post/tutorial-crud-em-node-js-com-driver-nativo-do-mongodb/ QUE FOI
- ESCRITO POR Escrito por Luiz Duarte, O TESXTO ASEGUIR TEM O  ITUITO DE TREINAR E ENTENDER SOBRE AS FERRAMENTAS ABORNDADOS NO MESMO, COM ISSO QUALQUER QUESTÃO REFERENTE A DIRgEITOS AUTORAIS ESTÃO SENDO REFERENCIADAS, SE CASO GOSTAREM DO QUE ESTA SENDO TRASCRITO AQUI, ENTREM NO SIT ORIGINAL PARA ENTENDER MELHOR. Texto Criado e Trascrito Meramente Para questão Didatica sem fins Lucrativos.                                                                                                                                    
+    O ARTIGO A BAIXO FOI MONTADO COM BASE NO SIT https://www.luiztools.com.br/post/tutorial-crud-em-node-js-com-driver-nativo-do-mongodb/ que foi Escrito por Luiz Duarte,O TEXTO  ASEGUIR TEM O  ITUITO DE TREINAR E ENTENDER SOBRE AS FERRAMENTAS ABORNDADOS NO MESMO, COM ISSO QUALQUER QUESTÃO REFERENTE A DIRgEITOS AUTORAIS ESTÃO SENDO REFERENCIADAS, SE CASO GOSTAREM DO QUE ESTA SENDO TRASCRITO AQUI, ENTREM NO SIT ORIGINAL PARA ENTENDER MELHOR. Texto Criado e Trascrito Meramente Para questão Didatica sem fins Lucrativos.                                                                                                                                    
 ***************************************************************************************************************************************************
  
 
@@ -43,9 +42,9 @@
         *                                               *                 
         *************************************************
 
-        O “-e” é para usar a view-engine (motor de renderização) EJS, ao invés do tradicional Jade/Pug. Já o “–git” deixa seu projeto preparado para versionamento com Git. Aperte Enter e o projeto
-        será criado (talvez ele peça uma confirmação, apenas digite ‘y’ e confirme).
-        Depois entre na pasta e mande instalar as dependências com npm install:
+ O “-e” é para usar a view-engine (motor de renderização) EJS, ao invés do tradicional Jade/Pug. Já o “–git” deixa seu projeto preparado para versionamento com Git. Aperte Enter e o projeto
+será criado (talvez ele peça uma confirmação, apenas digite ‘y’ e confirme).
+Depois entre na pasta e mande instalar as dependências com npm install:
 
 
         *************************************************                
