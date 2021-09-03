@@ -2,9 +2,8 @@
 
  TEXTTO RETIRADO DO SIT https://www.luiztools.com.br/post/tutorial-crud-em-node-js-com-driver-nativo-do-mongodb/
 
-***************************************************************************************************************************************************
-    O ARTIGO A BAIXO FOI MONTADO COM BASE NO SIT https://www.luiztools.com.br/post/tutorial-crud-em-node-js-com-driver-nativo-do-mongodb/ que foi Escrito por Luiz Duarte,O TEXTO  ASEGUIR TEM O  ITUITO DE TREINAR E ENTENDER SOBRE AS FERRAMENTAS ABORNDADOS NO MESMO, COM ISSO QUALQUER QUESTÃO REFERENTE A DIRgEITOS AUTORAIS ESTÃO SENDO REFERENCIADAS, SE CASO GOSTAREM DO QUE ESTA SENDO TRASCRITO AQUI, ENTREM NO SIT ORIGINAL PARA ENTENDER MELHOR. Texto Criado e Trascrito Meramente Para questão Didatica sem fins Lucrativos.                                                                                                                                    
-***************************************************************************************************************************************************
+
+   O ARTIGO A BAIXO FOI MONTADO COM BASE NO SIT  https://www.luiztools.com.br/post/tutorial-crud-em-node-js-com-driver-nativo-do-mongodb/   que foi Escrito por Luiz Duarte,O TEXTO  ASEGUIR TEM O  ITUITO DE TREINAR E ENTENDER SOBRE AS FERRAMENTAS ABORNDADOS NO MESMO, COM ISSO QUALQUER QUESTÃO REFERENTE A DIRgEITOS AUTORAIS ESTÃO SENDO REFERENCIADAS, SE CASO GOSTAREM DO QUE ESTA SENDO TRASCRITO AQUI, ENTREM NO SIT ORIGINAL PARA ENTENDER MELHOR. Texto Criado e Trascrito Meramente Para questão Didatica sem fins Lucrativos.
  
 
  Node.js é uma plataforma que permite a você construir aplicações server-side em JavaScript, já falei disso extensivamente neste artigo.
@@ -24,6 +23,7 @@
  6 - Excluindo clientes
 
  #1 – Configurando o Node.js
+ 
  Vamos começar instalando o Node.js: apenas clique no link do site oficial e depois no grande  botão verde para baixar o executável certo para o seu sistema operacional (recomendo a versão LTS).
  Esse executável irá instalar o Node.js e o NPM, que é o gerenciador de pacotes do Node. Uma vez com o NPM instalado, vamos instalar o módulo que será útil mais pra frente. Crie uma pasta para 
  guardar os seus projetos Node no computador (recomendo C:node) e dentro dela, via terminal de comando com permissão de administrador (sudo no Mac/Linux), rode o comando abaixo:
@@ -33,8 +33,7 @@
         *  npm install -g express-generator             *                  
         *                                               *                 
         *************************************************
- O Express é o web framework mais famoso da atualidade para Node.js. Com ele você consegue criar aplicações e APIs web muito rápida e facilmente. O que instalamos é o express-generator, um gerador
- de aplicação de exemplo, que podemo usar via linha de comando, da seguinte maneira:
+ O Express é o web framework mais famoso da atualidade para Node.js. Com ele você consegue criar aplicações e APIs web muito rápida e facilmente. O que instalamos é o express-generator, um gerador de aplicação de exemplo, que podemo usar via linha de comando, da seguinte maneira:
 
         *************************************************              
         *                                               *                     
@@ -42,10 +41,8 @@
         *                                               *                 
         *************************************************
 
- O “-e” é para usar a view-engine (motor de renderização) EJS, ao invés do tradicional Jade/Pug. Já o “–git” deixa seu projeto preparado para versionamento com Git. Aperte Enter e o projeto
-será criado (talvez ele peça uma confirmação, apenas digite ‘y’ e confirme).
+   O “-e” é para usar a view-engine (motor de renderização) EJS, ao invés do tradicional Jade/Pug. Já o “–git” deixa seu projeto preparado para versionamento com Git. Aperte Enter e o projeto será criado (talvez ele peça uma confirmação, apenas digite ‘y’ e confirme).
 Depois entre na pasta e mande instalar as dependências com npm install:
-
 
         *************************************************                
         *                                               *                     
@@ -53,7 +50,7 @@ Depois entre na pasta e mande instalar as dependências com npm install:
         *  npm install                                  *                  
         *                                               *                 
         *************************************************
-
+        
   Ainda no terminal de linha de comando e, dentro da pasta do projeto, digite:
 
         *************************************************              
@@ -61,8 +58,8 @@ Depois entre na pasta e mande instalar as dependências com npm install:
         *  npm start                                    *                  
         *                                               *                 
         *************************************************
-
-  isso vai fazer com que a aplicação default inicie sua execução em localhost:3000, que você pode acessar pelo seu navegador.
+   
+   Isso vai fazer com que a aplicação default inicie sua execução em localhost:3000, que você pode acessar pelo seu navegador.
 
         NAVEGADOR 
         *************************************************              
@@ -74,13 +71,7 @@ Depois entre na pasta e mande instalar as dependências com npm install:
  
  #2 – Configurando o MongoDB
 
-       OK, agora que temos a estrutura básica vamos fazer mais alguns ajustes em um arquivo que fica na raiz do seu projeto chamado package.json. Ele é o arquivo de configuração do seu projeto e 
- determina, por exemplo, quais as bibliotecas que você possui dependência no seu projeto.
- Vamos agora acessar o site oficial do MongoDB e baixar o Mongo. Clique no menu superior em Software > Community Server e busque a versão do Community Server mais recente para o seu sistema 
- operacional. Baixe o arquivo e, no caso do Windows, rode o executável que extrairá os arquivos na sua pasta de Arquivos de Programas, seguido de uma pasta server/version, o que é está ok para 
- a maioria dos casos. Dentro da pasta do seu projeto Node, que aqui chamei de workshoptdc, deve existir uma subpasta de nome data, crie ela agora. Nesta pasta vamos armazenar nossos dados do 
- MongoDB. Pelo prompt de comando, entre na subpasta bin dentro da pasta de instalação do seu MongoDB e digite (no caso de Mac e Linux, coloque um ./ antes do mongod e ajuste o caminho da pasta 
- data de acordo):
+   OK, agora que temos a estrutura básica vamos fazer mais alguns ajustes em um arquivo que fica na raiz do seu projeto chamado package.json. Ele é o arquivo de configuração do seu projeto e determina, por exemplo, quais as bibliotecas que você possui dependência no seu projeto. Vamos agora acessar o site oficial do MongoDB e baixar o Mongo. Clique no menu superior em Software > Community Server e busque a versão do Community Server mais recente para o seu sistema operacional. Baixe o arquivo e, no caso do Windows, rode o executável que extrairá os arquivos na sua pasta de Arquivos de Programas, seguido de uma pasta server/version, o que é está ok para a maioria dos casos. Dentro da pasta do seu projeto Node, que aqui chamei de workshoptdc, deve existir uma subpasta de nome data, crie ela agora. Nesta pasta vamos armazenar nossos dados do MongoDB. Pelo prompt de comando, entre na subpasta bin dentro da pasta de instalação do seu MongoDB e digite (no caso de Mac e Linux, coloque um ./ antes do mongod e ajuste o caminho da pasta data de acordo):
 
         *************************************************              
         *                                               *                     
@@ -88,7 +79,7 @@ Depois entre na pasta e mande instalar as dependências com npm install:
         *                                               *                 
         *************************************************                       
 
-        Isso irá iniciar o servidor do Mongo. Se não der nenhum erro no terminal, o MongoDB está pronto e está executando corretamente.
+   Isso irá iniciar o servidor do Mongo. Se não der nenhum erro no terminal, o MongoDB está pronto e está executando corretamente.
  Agora abra outro prompt de comando (o outro ficará executando o servidor) e novamente dentro da pasta bin do Mongo, digite:
 
         *************************************************              
@@ -97,7 +88,7 @@ Depois entre na pasta e mande instalar as dependências com npm install:
         *                                               *     
         *************************************************   
 
-        Após a conexão funcionar, se você olhar no prompt onde o servidor do Mongo está rodando, verá que uma conexão foi estabelecida. mongod é o executável do servidor, e mongo é o executável de cliente, que você acabou de conectar.
+   Após a conexão funcionar, se você olhar no prompt onde o servidor do Mongo está rodando, verá que uma conexão foi estabelecida. mongod é o executável do servidor, e mongo é o executável de cliente, que você acabou de conectar.
  Opcionalmente você pode usar ferramentas visuais como o MongoDB Compass, que é gratuita.
 
   Agora, no console do cliente mongo, digite:
@@ -108,7 +99,7 @@ Depois entre na pasta e mande instalar as dependências com npm install:
         *                                               *     
         *************************************************  
 
-        Isso vai fazer com que o terminal se conecte exatamente na base “workshoptdc.” No entanto, ela somente será criada de verdade quando adicionarmos registros nela, o que faremos a partir do próprio cliente para exemplificar.
+   Isso vai fazer com que o terminal se conecte exatamente na base “workshoptdc.” No entanto, ela somente será criada de verdade quando adicionarmos registros nela, o que faremos a partir do próprio cliente para exemplificar.
  Uma de minhas coisas favoritas sobre MongoDB é que ele usa JSON como estrutura de dados, o que significa curva de aprendizagem zero para quem já conhece o padrão. Caso não seja o seu caso, terá que buscar algum tutorial de JSON na Internet antes de prosseguir.
  Vamos adicionar um registro à nossa coleção (o equivalente do Mongo às tabelas do SQL). Para este tutorial teremos apenas uma base de customers (clientes), sendo o nosso formato de dados como abaixo:
 
@@ -129,7 +120,7 @@ Depois entre na pasta e mande instalar as dependências com npm install:
         *                                                          *
         ************************************************************
 
-        Uma coisa importante aqui: “db” é a base de dados na qual estamos conectados no momento, que um pouco antes havíamos definido como sendo “workshoptdc”. A parte “customers” é o nome da nossa coleção, que passará a existir assim que adicionarmos um objeto JSON nela. Tecle Enter para que o comando seja enviado ao servidor. Se tudo deu certo, uma respostas com “nInserted: 1” (number of inserted) deve aparecer.
+   Uma coisa importante aqui: “db” é a base de dados na qual estamos conectados no momento, que um pouco antes havíamos definido como sendo “workshoptdc”. A parte “customers” é o nome da nossa coleção, que passará a existir assim que adicionarmos um objeto JSON nela. Tecle Enter para que o comando seja enviado ao servidor. Se tudo deu certo, uma respostas com “nInserted: 1” (number of inserted) deve aparecer.
  Para ver se o registro foi parar no banco realmente, digite:
 
 
