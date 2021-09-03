@@ -140,3 +140,77 @@ O pretty() no final do comando find() é para identar o resultado, que retornar�
 Claro, o seu _id pode ser diferente desse, uma vez que o Mongo irá gerá-lo automaticamente. Isto é tudo que precisamos saber de MongoDB no momento, o que me parece bem fácil, aliás! Para saber mais sobre o MongoDB, Google!
 
 Agora vamos adicionar mais alguns registros no seu console mongo:
+
+
+        ************************************************************
+        *                                                          *                     
+        *     custArray = [{ "nome" : "Fernando", "idade" : 33 },  *
+        *                { "nome" : "Teste", "idade" : 20 }]       *
+        *     db.customers.insert(custArray);                      *
+        *                                                          *
+        ************************************************************
+        
+   Nesse exemplo passei um array com vários objetos para nossa coleção. Usando novamente o comando db.customers.find().pretty() irá mostrar que todos foram salvos no banco. Agora sim, vamos interagir de verdade com o web server + MongoDB.
+
+
+# 3 – Conectando no MongoDB com Node
+
+Agora sim vamos juntar as duas tecnologias-alvo deste post!
+
+Precisamos adicionar uma dependência para que o MongoDB funcione com essa aplicação usando o driver nativo. Usaremos o NPM via linha de comando de novo:
+
+           *****************************
+           *    npm install mongodb    *
+           *****************************
+           
+Com isso, uma dependência nova será baixada para sua pasta node_modules e uma novas linha de dependência será adicionada no package.json para dar suporte a MongoDB. Primeiramente, para organizar nosso acesso à dados, vamos criar um novo arquivo chamado db.js na raiz da nossa aplicação Express (workshoptdc). Esse arquivo será o responsável pela conexão e manipulação do nosso banco de dados, usando o driver nativo do MongoDB. Adicione estas linhas:
+
+    **********************************************************************
+    *     const mongoClient = require("mongodb").MongoClient;            *
+    *     mongoClient.connect("mongodb://localhost")                     *
+    *                .then(conn => global.conn = conn.db("workshoptdc")) *
+    *                .catch(err => console.log(err))                     *
+    *    module.exports = { }                                            *
+    **********************************************************************
+
+Estas linhas carregam o objeto mongoClient  a partir do módulo ‘mongodb’ e depois fazem uma conexão em nosso banco de dados localhost, sendo 27017 a porta padrão do MongoDB. Essa conexão é armazenada globalmente, para uso posterior e em caso de erro, o mesmo é logado no console.
+
+A última linha ignore por enquanto, usaremos ela mais tarde.Agora abra o arquivo www que fica na pasta bin do seu projeto Node e adicione a seguinte linha no início dele:
+    
+    **********************************            
+    * global.db = require('../db');  *
+    **********************************
+
+Nesta linha nós estamos carregando o módulo db que acabamos de criar e guardamos o resultado dele em uma variável global. Ao carregarmos o módulo db, acabamos fazendo a conexão com o Mongo e retornamos aquele objeto vazio do module.exports, lembra? Usaremos ele mais tarde, quando possuir mais valor.
+
+A seguir, vamos modificar a nossa rota para que ela mostre dados vindos do banco de dados, usando esse db.js que acabamos de criar.
+
+Para conseguirmos fazer uma listagem de clientes, o primeiro passo é ter uma função que retorne todos os clientes em nosso módulo db.js (arquivos JS que criamos são chamados de módulos se possuírem um module.exports no final), assim, adicione a seguinte função ao seu db.js (substituindo aquela linha do module.exports que tinha antes):
+
+    *******************************************************************************************
+    *   function findAll() { return global.conn.collection("customers").find().toArray(); }   *
+    *   module.exports = { findAll }                                                          *
+    *******************************************************************************************
+ 
+
+A consulta aqui é bem direta: usamos a conexão global conn para navegar até a collection de customers e fazer um find sem filtro algum. O resultado desse find é um cursor, então usamos o toArray para convertê-lo para um array e retorná-lo.
+
+Repare na última instrução, ela diz que a nossa função findAll poderá ser usada em outros pontos da nossa aplicação que importem nosso módulo db:
+        
+    **************************************
+    *    module.exports = { findAll }    *
+    **************************************
+    
+Agora vamos programar a lógica que vai usar esta função. Abra o arquivo ./routes/index.js no seu editor de texto (sugiro o Visual Studio Code).  Dentro dele temos apenas a rota default, que é um get no path raiz. Vamos editar essa rota da seguinte maneira:
+
+    ************************************************************************************************************************
+    *    /* GET home page. */                                                                                              * 
+    *         router.get('/', async (req, res, next) => {                                                                  *
+    *                                                     try {    const docs = await global.db.findAll();                 *
+    *                                                     res.render('index', { title: 'Lista de Clientes', docs });       *
+                                                         }                                                                 *
+    *                                                     catch (err) { next(err); }                                       *
+    *                                                    });                                                               *
+    ************************************************************************************************************************
+
+router.get define a rota que trata essas requisições com o verbo GET. Quando recebemos um GET /, a função de callback dessa rota (aquela com req, res e next) é disparada e com isso usamos o findAll que acabamos de programar. Como esta é uma função assíncrona que vai no banco de dados, precisamos usar a palavra reservada await antes dela, ter um try/catch para tratar seus possíveis erros e o callback do router tem de ter a palavra async antes dos parâmetros da função.
