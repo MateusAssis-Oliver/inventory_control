@@ -221,3 +221,38 @@ Agora vamos programar a lógica que vai usar esta função. Abra o arquivo ./rou
     
 
 router.get define a rota que trata essas requisições com o verbo GET. Quando recebemos um GET /, a função de callback dessa rota (aquela com req, res e next) é disparada e com isso usamos o findAll que acabamos de programar. Como esta é uma função assíncrona que vai no banco de dados, precisamos usar a palavra reservada await antes dela, ter um try/catch para tratar seus possíveis erros e o callback do router tem de ter a palavra async antes dos parâmetros da função.
+
+
+Agora vamos arrumar a nossa view para listar os clientes. Entre na pasta ./views/ e edite o arquivo index.ejs para que fique desse jeito:
+
+    <html>
+    <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+    <h1><%= title %></h1>
+    <ul>
+      <% docs.forEach(function(customer){ %>
+        <li>
+            <%= customer.nome %>
+        </li>
+      <% }) %>
+    </ul>
+    </body>
+    </html>
+
+
+Aqui estamos dizendo que o objeto docs, que será retornado pela rota que criamos no passo anterior, será iterado com um forEach e seus objetos utilizados um-a-um para compor uma lista não-ordenada com seus nomes.
+
+
+       "scripts": {  "start": "npx nodemon ./bin/www" },
+       
+       
+ Abra seu navegador, acesse http://localhost:3000/userlist e maravilhe-se com o resultado.
+ 
+    NAVEGADOR
+    
+    Lista De Cliente 
+    .Luis
+    .Fernandp
