@@ -64,8 +64,7 @@ Depois entre na pasta e mande instalar as dependências com npm install:
    
    Isso vai fazer com que a aplicação default inicie sua execução em localhost:3000, que você pode acessar pelo seu navegador.
 
-        NAVEGADOR 
-                      
+        NAVEGADOR             
                                                                             
              Expless                                                     
               Welcome to Express                                        
@@ -173,11 +172,13 @@ Precisamos adicionar uma dependência para que o MongoDB funcione com essa aplic
 Com isso, uma dependência nova será baixada para sua pasta node_modules e uma novas linha de dependência será adicionada no package.json para dar suporte a MongoDB. Primeiramente, para organizar nosso acesso à dados, vamos criar um novo arquivo chamado db.js na raiz da nossa aplicação Express (workshoptdc). Esse arquivo será o responsável pela conexão e manipulação do nosso banco de dados, usando o driver nativo do MongoDB. Adicione estas linhas:
 
     
-         const mongoClient = require("mongodb").MongoClient;            
+         const mongoClient = require("mongodb").MongoClient;
+         
          mongoClient.connect("mongodb://localhost")                     
                     .then(conn => global.conn = conn.db("workshoptdc")) 
-                    .catch(err => console.log(err))                     
-        module.exports = { }                                            
+                    .catch(err => console.log(err));
+                    
+        module.exports = { };                                            
     
 
 Estas linhas carregam o objeto mongoClient  a partir do módulo ‘mongodb’ e depois fazem uma conexão em nosso banco de dados localhost, sendo 27017 a porta padrão do MongoDB. Essa conexão é armazenada globalmente, para uso posterior e em caso de erro, o mesmo é logado no console.
@@ -249,10 +250,55 @@ Aqui estamos dizendo que o objeto docs, que será retornado pela rota que criamo
        "scripts": {  "start": "npx nodemon ./bin/www" },
        
        
- Abra seu navegador, acesse http://localhost:3000/userlist e maravilhe-se com o resultado.
+ Abra seu navegador, acesse http://localhost:3000 e maravilhe-se com o resultado.
  
     NAVEGADOR
     
     Lista De Cliente 
     .Luis
-    .Fernandp
+    .Fernando
+    
+    
+Se você viu a página acima é porque sua conexão com o banco de dados está funcionando!
+
+
+
+
+# Parte 4 – Cadastrando no banco.
+
+
+Listar dados é moleza e salvar dados no MongoDB não é algo particularmente difícil. Essencialmente precisamos definir uma rota para receber um POST, ao invés de um GET.
+Primeiro vamos criar a nossa tela de cadastro de usuário com dois clássicos e horríveis campos de texto à moda da década de 90. Dentro da pasta views, crie um new.ejs com o seguinte HTML dentro:
+
+
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+    <h1><%= title %></h1>
+    <form action="/new" method="POST">
+      <p>Nome:<input type="text" name="nome"/></p>
+      <p>Idade:<input type="number" name="idade" /></p>
+      <input type="submit" value="Salvar" />
+    </form>
+    </body>
+    </html>
+    
+    
+    
+ Agora vamos voltar à pasta routes e abrir o nosso arquivo de rotas, o index.js onde vamos adicionar duas novas rotas. A primeira, é a rota GET para acessar a página new quando acessarmos /new no navegador:
+ 
+ 
+    router.get('/new', (req, res, next) => {
+    res.render('new', { title: 'Novo Cadastro' });
+    });
+    
+    
+ Se você reiniciar seu servidor Node e acessar http://localhost:3000/newuser verá a página abaixo:
+    
+    
+   
